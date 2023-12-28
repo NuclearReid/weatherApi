@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="Description" content="Enter your description here" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/style/style.css">
+        <script
+        src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+        crossorigin="anonymous"
+        ></script>
+        <link rel="stylesheet" type="text/css" href="./assets/style/style.css"/>
+        <title>Getting the Weather</title>
+      </head>
+  <body>
+
+    <header id="weatherHeaderDiv" class="container-fluid row p-2">
+      <h1 id="weatherHeader" class="container-fluid col-12 text-center">The Weather!</h1>
+    </header>
+
+    <main>
+
+        <div id="mainContainer" class="container-fluid row">
+          <div id="searchContainer"  class="container-fluid row row-cols-1 col-4 h-50">
+            <div id="searchBar" class="container-fluid">
+              <nav class="navbar container-fluid">
+                <div class="container-fluid">
+                  <form id="citySearch" class="d-flex row row-cols-1 justify-content-center" role="search">
+                    <input id="cityName" class="form-control m-3 w-80" type="search" placeholder="Search" aria-label="Search">
+                    <button id="citySearchBtn" class="btn btn-outline-success w-75 row-cols-1" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+            </div>
+            <div id="pastSearches" class="container-fluid justify-content-center align-items-center">
+            </div>
+          </div>
+
+          <div id="mainTempContainer" class="container-fluid col-8">
+            <div id="todayTempContainer" class="h-50">
+                <div id="todayWeather" class="w-100">
+                  <h3 id="day11">Today</h3>
+                  <ul id="day1" id="todayWeatherli" class="list-unstyled">    
+                  </ul>
+                </div> 
+            </div>
+            
+            <div id="mainForecastTempContainer" class="container-fluid">
+              <div id="futureTempContainer" class="d-flex justify-content-around w-100">
+                <div id="2" class="card">
+                  <h3 id="day12" class="card-header">Day two</h3>
+                  <ul id="day2" class="card-body list-unstyled">
+                  </ul>
+                </div>
+
+                <div id="3" class="card">
+                  <h3 id="day13" class="card-header">Day three</h3>
+                  <ul id="day3" class="card-body list-unstyled"> 
+                  </ul>
+                </div>
+
+                <div id="4" class="card">
+                  <h3 id="day14" class="card-header">Day four</h3>
+                  <ul id="day4" class="card-body list-unstyled">  
+                  </ul>
+                </div>
+
+                <div id="5" class="card">
+                  <h3 id="day15" class="card-header">Day five</h3>
+                  <ul id="day5" class="card-body list-unstyled">
+                  </ul>
+                </div>
+                
+              </div>
+           </div>
+          </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
+  </html>
