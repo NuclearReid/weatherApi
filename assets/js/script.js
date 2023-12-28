@@ -215,6 +215,7 @@ function displaySearch(cTemp, windSpeed, humidity, sky){
 function handleSearchFormSubmit(event){
     event.preventDefault();
     var cityName = $("#cityName").val();
+    // I used .toLowerCase because the program was seeing 'new york' and 'New York' as two different cities and would append both as buttons
     cityName = cityName.toLowerCase();
     // sets the header of the page to say 'weather for _____'
     weatherHeader.text('The Weather for '+cityName);
