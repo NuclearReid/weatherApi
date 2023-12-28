@@ -17,6 +17,8 @@ var dayThreeLiEl = $('#dayThree');
 var dayFourLiEl = $('#dayFour');
 var dayFiveLiEl = $('#dayFive');
 
+
+// The different arrays that will be used to store the data i get from the api
 var cTempArr = [];
 var cTempArr5 = [];
 
@@ -64,12 +66,12 @@ var today = dayjs();
 
 // retrieves the items stored in the local storage and displays them when the page loads
 $(document).ready(function() {
-    // the chunk of code is basically copied and pasted from the clalWeatherApi() function
+    // this function is basically copied and pasted from the clalWeatherApi()
 
     // creates a variable that gets the items stored in the local storage under the key 'storedCitites' 
     var storedCities = JSON.parse(localStorage.getItem('storedCities'));
 
-    // this be appends a button for each of the values in the local storage
+    // this for loop appends a button for each of the values in the local storage
     for (var i = 0; i < storedCities.length; i++) {
         var cityName = storedCities[i];
         var pastSearches = $('#pastSearches');
@@ -86,16 +88,16 @@ function nextFiveDays(){
     // sets the text for today ie 'Thursday 28 Dec 2023'
     var formattedToday = today.format(('dddd D MMM YYYY'));
 
-    // I have the Id of each header as #day1(1-5) this is because it's easy to use the for loop to cycle through them.
-    // sets the header of today's weather to display the date today 
+    // I have the Id of each header (in the HTML) as #day1(1-5) this is because it's easy to use the for loop to cycle through them.
+        // sets the header of today's weather to display the date today 
     $('#day11').text(formattedToday);
     // goes through the rest of the days
-    //I start the loop at 1 because 0 would be for today which is already being displayed
+        //I start the loop at 1 because 0 would be for today which is already being displayed
     for(var i = 1; i <= 5; i++){
         // this is used to get the next day's date ie (Friday 29)
         var addedDay = theDay.add(i,'day').format('dddd D');
-        // I started my Ids with #day11 instead of #day10 so I need to add to use (i+1)
-        // in the first ittiration, this will grab #day12
+        // I started my Ids with #day11 instead of #day10 so I need to use (i+1)
+          // in the first ittiration, this will grab #day12
         var dayId = $('#day1'+(i+1));
         // sets the text to display the day
         dayId.text(addedDay);
@@ -109,12 +111,12 @@ function callWeatherApi(cityNameApi, cityName){
         method: 'GET',
     }).then(function(response){
         //this is still in here so i can check if there is other data I want to display
-        console.log(response);
+        // console.log(response);
 
 
         // the response.list is 40 items (8 items per day) so increment i by 8 each time to grab the next day's data
         for(var i=0; i<response.list.length; i+=8){
-            // the temp is in kelvin so I need to convert it into an int before i convert it to c
+            // the temp is in kelvin so I need to convert the data into an int before I convert it to c
             var tempInt = parseInt(response.list[i].main.temp);
             // I subtract 273 to convert the temp from K to C and store it
             var cTemp = tempInt - 273;
@@ -127,7 +129,7 @@ function callWeatherApi(cityNameApi, cityName){
         }
 
         // Gets the stored cities from the local storage. Will be used to check if a new city is searched for and if so, will append it as a new button
-        // the || [] is there for when the app is first started and there is nothing in the local storage, this'll create an empty array to be filled
+            // the '|| []' is there for when the app is first started and there is nothing in the local storage, it'll create an empty array to be filled
         var storedCities = JSON.parse(localStorage.getItem('storedCities')) || [];
 
         // This if statement is checking if the searched city is NOT in the local storage. And if it isn't, it'll append it as a new button
@@ -137,8 +139,10 @@ function callWeatherApi(cityNameApi, cityName){
             pastBtn.text(cityName);
             pastSearches.attr('class', 'container-fluid row row-cols-1 rounded align-items-start justify-content-center');
             pastBtn.attr('class', 'btn btn-outline-secondary w-75 my-2');
-            // basically when the user clicked on an appeneded button, a 'null' value was put in the local storage and that 'null' was appeneded into a button too
-                // this if statment essentially checks if it's a null and if it's NOT then it'll append the button
+            
+            //this if statement fixed a bug I was having
+                // when the user clicked on an appeneded button, a 'null' value was put in the local storage and that 'null' was then appeneded into a button
+                    // this if statment essentially checks if what's trying to be appended is null and if it's NOT null then it'll append the button
             if(pastBtn.text() !== ''){
                 pastSearches.append(pastBtn);
                 storedCities.push(cityName);
@@ -155,8 +159,8 @@ function callWeatherApi(cityNameApi, cityName){
     });
 }
 
+// Just displayes the data for the searched city
 function displaySearch(cTemp, windSpeed, humidity, sky){
-    // console.log("this is within the displaySearch() function "+ dateTime +" "+ cTemp + " "+ windSpeed + " " + humidity);
     // sets the text for the next 5 days
     nextFiveDays();
     // removes the current list elements
@@ -171,31 +175,33 @@ function displaySearch(cTemp, windSpeed, humidity, sky){
     windSpeedArr.push(windSpeed);
     humidityArr.push(humidity);
 
-    // makes sure the array is 5 long before appending data. 
+    // makes sure the array is 5 long before appending data.
     if(cTempArr.length == 5){
-        // This is essentially just taking each individual data and 
-        // cTempArr5 = [...cTempArr];
-        // skyArr5 = [...skyArr];
-        // windSpeedArr5 = [...windSpeedArr];
-        // humidityArr5 = [...humidityArr];
-        // dateTimeArr5 = [...dateTimeArr];
-        // cTempArr = [];
-        // skyArr = [];
-        // windSpeedArr = [];
-        // humidityArr = [];
-        // dateTimeArr = [];
+        // When the array is filled with the weather data I set it as a new array
+        cTempArr5 = [...cTempArr];
+        skyArr5 = [...skyArr];
+        windSpeedArr5 = [...windSpeedArr];
+        humidityArr5 = [...humidityArr];
+        dateTimeArr5 = [...dateTimeArr];
+        // I then reset the original array so when the person clicks on another city, it doesn't push to the end of the previous array
+        cTempArr = [];
+        skyArr = [];
+        windSpeedArr = [];
+        humidityArr = [];
+        dateTimeArr = [];
 
-
+        // I place the targetted elements into arrays so they are easier to itirate through 
         var listTempEls = [listTempEl, listTemp2El, listTemp3El, listTemp4El, listTemp5El];
         var listSkyEls = [listSkyEl,listSky2El,listSky3El,listSky4El,listSky5El]
         var listWindEls = [listWindEl, listWind2El, listWind3El, listWind4El, listWind5El];
         var listHumEls = [listHumEl, listHum2El, listHum3El, listHum4El, listHum5El];
-        
+
+        // fills each of the list elements with the weather data from the arrays created at the start of the if statement
         for(var i = 0; i <cTempArr5.length; i++){
-            listTempEls[i].text('The temp will be ' + cTempArr[i]+'c');
-            listSkyEls[i].text('The conditions will be '+skyArr[i]);
-            listWindEls[i].text('The wind speed will be : '+windSpeedArr[i] + 'kph');
-            listHumEls[i].text('The humidity will be : '+ humidityArr[i] + '%');
+            listTempEls[i].text('The temp will be ' + cTempArr5[i]+'c');
+            listSkyEls[i].text('The conditions will be '+skyArr5[i]);
+            listWindEls[i].text('The wind speed will be : '+windSpeedArr5[i] + 'kph');
+            listHumEls[i].text('The humidity will be : '+ humidityArr5[i] + '%');
             listTempEls[i].appendTo('#day' + (i+1));
             listSkyEls[i].appendTo('#day'+(i+1));
             listWindEls[i].appendTo('#day' + (i+1));
@@ -205,23 +211,27 @@ function displaySearch(cTemp, windSpeed, humidity, sky){
     }
 
 }
-
+// This function just gets the city name from the search box & creates the weatherapi url
 function handleSearchFormSubmit(event){
     event.preventDefault();
     var cityName = $("#cityName").val();
     cityName = cityName.toLowerCase();
+    // sets the header of the page to say 'weather for _____'
     weatherHeader.text('The Weather for '+cityName);
-
+    // sets the weatherApi url
     var cityNameApi = weatherApiStart + cityName + weatherApiEnd;
 
+    // I originally was appending the buttons of the past searches in this function but had to change it because I couldn't check if the city was in the api here
+        // If the city wasn't in the api, I didn't want to append the button
+            // This is the reason I pass the city name to the callWeatherApi()
     callWeatherApi(cityNameApi, cityName);
 }
     
-
+// when they submit the form looking for a city
 $('#citySearch').on('submit', handleSearchFormSubmit);
 
 
-
+// this function is just for when they click on one of the appended buttons & calls to the api to get the weather for the city of that button
 $('#pastSearches').on('click', function(event){       
     var clickedCity = $(event.target).text();
     weatherHeader.text('The weather for '+ clickedCity);
