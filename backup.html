@@ -13,7 +13,6 @@
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
         crossorigin="anonymous"
         ></script>
-        <link rel="reset" type="text/css" href="./assets/style/reset.css"/>
         <link rel="stylesheet" type="text/css" href="./assets/style/style.css"/>
         <title>Getting the Weather</title>
       </head>
@@ -25,11 +24,11 @@
 
     <main>
 
-        <div id="mainContainer" class="container-fluid row justify-content-center" >
-          <div id="searchContainer"  class="container-fluid row row-cols-1 col-md-4 h-50 justify-content-center">
+        <div id="mainContainer" class="container-fluid row">
+          <div id="searchContainer"  class="container-fluid row row-cols-1 col-4 h-50">
             <div id="searchBar" class="container-fluid">
               <nav class="navbar container-fluid">
-                <div class="container-fluid justify-content-around">
+                <div class="container-fluid">
                   <form id="citySearch" class="d-flex row row-cols-1 justify-content-center" role="search">
                     <input id="cityName" class="form-control m-3 w-80" type="search" placeholder="Search" aria-label="Search">
                     <button id="citySearchBtn" class="btn btn-outline-success w-75 row-cols-1" type="submit">Search</button>
@@ -41,8 +40,8 @@
             </div>
           </div>
 
-          <div id="mainTempContainer" class="container-fluid col-md-8">
-            <div id="todayTempContainer" class="h-30">
+          <div id="mainTempContainer" class="container-fluid col-8">
+            <div id="todayTempContainer" class="h-50">
                 <div id="todayWeather" class="w-100">
                   <h3 id="day11">Today</h3>
                   <ul id="day1" id="todayWeatherli" class="list-unstyled">    
@@ -50,30 +49,29 @@
                 </div> 
             </div>
             
-            <div id="mainForecastTempContainer" class="container-fluid row">
-              <div id="futureTempContainer" class="d-flex justify-content-around w-100 flex-md-row flex-column">
-                <div id="2" class="card col-md-3 mb-3 mx-2">
+            <div id="mainForecastTempContainer" class="container-fluid">
+              <div id="futureTempContainer" class="d-flex justify-content-around w-100">
+                <div id="2" class="card">
                   <h3 id="day12" class="card-header">Day two</h3>
-                  <ul id="day2" class="card-body list-unstyled my-0">
+                  <ul id="day2" class="card-body list-unstyled">
                   </ul>
                 </div>
 
-                <div id="3" class="card col-md-3 mb-3 mx-2">
+                <div id="3" class="card">
                   <h3 id="day13" class="card-header">Day three</h3>
-                  <ul id="day3" class="card-body list-unstyled my-0"> 
+                  <ul id="day3" class="card-body list-unstyled"> 
                   </ul>
-                  
                 </div>
 
-                <div id="4" class="card col-md-3 mb-3 mx-2">
+                <div id="4" class="card">
                   <h3 id="day14" class="card-header">Day four</h3>
-                  <ul id="day4" class="card-body list-unstyled my-0">  
+                  <ul id="day4" class="card-body list-unstyled">  
                   </ul>
                 </div>
 
-                <div id="5" class="card col-md-3 mb-3 mx-2">
+                <div id="5" class="card">
                   <h3 id="day15" class="card-header">Day five</h3>
-                  <ul id="day5" class="card-body list-unstyled my-0">
+                  <ul id="day5" class="card-body list-unstyled">
                   </ul>
                 </div>
                 

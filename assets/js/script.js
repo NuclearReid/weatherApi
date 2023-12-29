@@ -120,8 +120,10 @@ function callWeatherApi(cityNameApi, cityName){
             var tempInt = parseInt(response.list[i].main.temp);
             // I subtract 273 to convert the temp from K to C and store it
             var cTemp = tempInt - 273;
-            // gets the windspeed, humidity, and sky conditions
-            var windSpeed = response.list[i].wind.speed;
+            // The default is m/sec so I need to convert it to km/hr
+            var windSpeedInt = parseInt(response.list[i].wind.speed);
+            var windSpeed = windSpeedInt * 3.6;
+            // Humidity, and sky conditions
             var humidity = response.list[i].main.humidity;
             var sky = response.list[i].weather[0].main;
             // sends the data to the displaySearch() function
@@ -198,10 +200,33 @@ function displaySearch(cTemp, windSpeed, humidity, sky){
 
         // fills each of the list elements with the weather data from the arrays created at the start of the if statement
         for(var i = 0; i <cTempArr5.length; i++){
-            listTempEls[i].text('The temp will be ' + cTempArr5[i]+'c');
-            listSkyEls[i].text('The conditions will be '+skyArr5[i]);
-            listWindEls[i].text('The wind speed will be : '+windSpeedArr5[i] + 'kph');
-            listHumEls[i].text('The humidity will be : '+ humidityArr5[i] + '%');
+            listTempEls[i].text('Temp:' + cTempArr5[i]+'c');
+            listSkyEls[i].text('Conditions: '+skyArr5[i]);
+            $('#day'+(i+1)).removeClass();
+
+            if(skyArr5[i] == 'Clouds'){
+                $('#day1'+(i+1)).append("<img src='https://openweathermap.org/img/wn/04d@2x.png'>");
+                $('#day'+(i+1)).addClass('card-body list-unstyled mb-0 clouds');
+            }
+            else if(skyArr5[i] == 'Clear'){
+                $('#day1'+(i+1)).append("<img src='https://openweathermap.org/img/wn/01d@2x.png'>");
+                $('#day'+(i+1)).addClass('card-body list-unstyled mb-0 clear');
+            }
+            else if(skyArr5[i] == 'Rain'){
+                $('#day1'+(i+1)).append("<img src='https://openweathermap.org/img/wn/09d@2x.png'>");
+                $('#day'+(i+1)).addClass('card-body list-unstyled mb-0 rain');
+             }
+             else if(skyArr5[i] == 'Snow'){
+                $('#day1'+(i+1)).append("<img src='https://openweathermap.org/img/wn/13d@2x.png'>");
+                $('#day'+(i+1)).addClass('card-body list-unstyled mb-0 snow');
+             }
+             else if(skyArr5[i] == 'Mist'){
+                $('#day1'+(i+1)).append("<img src='https://openweathermap.org/img/wn/50d@2x.png'>");
+                $('#day'+(i+1)).addClass('card-body list-unstyled mb-0');
+             }
+
+            listWindEls[i].text('Wind speed: '+windSpeedArr5[i] + 'kph');
+            listHumEls[i].text('Humidity: '+ humidityArr5[i] + '%');
             listTempEls[i].appendTo('#day' + (i+1));
             listSkyEls[i].appendTo('#day'+(i+1));
             listWindEls[i].appendTo('#day' + (i+1));
