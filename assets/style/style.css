@@ -45,7 +45,7 @@
 header{
     background-color: lightsalmon;
 }
-main{
+body{
     background-color: rgba(240, 208, 150, 0.353);
 }
 #citySearchBtn{
