@@ -204,6 +204,7 @@ function displaySearch(cTemp, windSpeed, humidity, sky){
             listSkyEls[i].text('Conditions: '+skyArr5[i]);
             $('#day'+(i+1)).removeClass();
 
+            //changes the img/background depending on the weather conditions for each day
             if(skyArr5[i] == 'Clouds'){
                 $('#day1'+(i+1)).append("<img src='https://openweathermap.org/img/wn/04d@2x.png'>");
                 $('#day'+(i+1)).addClass('card-body list-unstyled mb-0 clouds');
